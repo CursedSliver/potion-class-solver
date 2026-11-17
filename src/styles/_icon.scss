@@ -1,0 +1,132 @@
+@use 'variables' as *;
+
+// Sprite icons: background image / position / size are set inline from TS
+// (computed from the 48px tile sheets in assets/).
+.icon {
+  display: block;
+  flex: none;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+// Non-interactive icon wrapper used in lists / result rows (tooltip anchor).
+.badge {
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+}
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cell {
+  width: $cell-size;
+  height: $cell-size;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: $cell-bg;
+  border: 1px solid $cell-border;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: border-color 0.12s ease, transform 0.12s ease, box-shadow 0.12s ease;
+
+  // Colored underline; --ring is set by the mixture modifier classes below.
+  &::after {
+    content: '';
+    position: absolute;
+    left: 9px;
+    right: 9px;
+    bottom: 3px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--ring, transparent);
+    opacity: 0.55;
+  }
+
+  &:hover {
+    border-color: $text-faint;
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+
+  // Selected potion / mixture (outcome).
+  &.is-selected {
+    border-color: var(--ring, $accent);
+    box-shadow: 0 0 0 1px var(--ring, $accent);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  // Reagent currently placed in the brewing field.
+  &.is-used {
+    border-color: $green;
+    box-shadow: 0 0 0 1px $green;
+
+    &::after {
+      background: $green;
+      opacity: 1;
+    }
+  }
+
+  &--useless {
+    --ring: #{$mixture-useless};
+  }
+
+  &--promising {
+    --ring: #{$mixture-promising};
+  }
+
+  &--very {
+    --ring: #{$mixture-very};
+  }
+
+  &--extraordinary {
+    --ring: #{$mixture-extraordinary};
+  }
+}
+
+.slot {
+  width: $slot-size;
+  height: $slot-size;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 2px dashed $slot-border;
+  border-radius: 12px;
+  background: transparent;
+  color: $text-faint;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: default;
+
+  &--filled {
+    border-style: solid;
+    border-color: $slot-border-filled;
+    background: $cell-bg;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $red;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $accent;
+      outline-offset: 2px;
+    }
+  }
+
+  &--outcome.slot--filled:hover {
+    border-color: $accent;
+  }
+}

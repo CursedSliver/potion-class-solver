@@ -1,0 +1,21 @@
+{
+  "name": "potion-class-solver",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node esbuild.config.mjs --watch",
+    "build": "node esbuild.config.mjs --prod",
+    "typecheck": "tsc --noEmit",
+    "test:solver": "node tools/test-solver.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "esbuild-sass-plugin": "^3.7.0",
+    "sass": "^1.108.2",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "z3-solver": "^5.4.1"
+  }
+}

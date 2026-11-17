@@ -1,0 +1,71 @@
+// ==========================================================================
+// Design tokens — all colors and shared sizes live here (no hardcoded colors
+// in partials).
+// ==========================================================================
+
+// ---- App chrome ----
+$bg: #15161a;
+$panel: #1e2026;
+$panel-border: #2e323b;
+$panel-radius: 14px;
+$cell-bg: #23262d;
+$cell-border: #32363f;
+$slot-border: #3a404c;
+$slot-border-filled: #4c5364;
+
+$text: #e9ebef;
+$text-muted: #9aa1ad;
+$text-faint: #6f7683;
+
+$accent: #e8b04b;
+$accent-strong: #f4c465;
+$accent-ink: #241a05;
+$green: #6fdd7a;
+$red: #ff6b6b;
+
+// ---- Pairing progress bar ----
+$progress-track: #262a32;
+$progress-fill: $accent;
+$progress-fill-strong: $accent-strong;
+$progress-glow: rgb(232 176 75 / 38%);
+$resolution-bg: rgb(111 221 122 / 8%);
+$resolution-border: rgb(111 221 122 / 36%);
+
+// ---- Mixture (filler potion) type coding ----
+// The four mixtures share one sprite in the data, so they are color-coded.
+$mixture-useless: #8b93a1;
+$mixture-promising: #e8b04b;
+$mixture-very: #ef8f4b;
+$mixture-extraordinary: #b48cf2;
+
+// ---- Reagent preference coding ----
+$preference-preferred: $green;
+$preference-neutral: #8b93a1;
+$preference-avoid: $red;
+$preference-preferred-bg: rgb(111 221 122 / 16%);
+$preference-avoid-bg: rgb(255 107 107 / 16%);
+
+// ---- Game-style tooltip ----
+$tip-bg: #171511;
+$tip-border: #8a6f3c;
+$tip-text: #f2ede4;
+$tip-muted: #b3a893;
+$tip-radius: 10px;
+$tip-width: 340px;
+
+// ---- Layout ----
+$cell-size: 52px;
+$slot-size: 56px;
+$recorded-list-height: 300px;
+$guaranteed-list-max-height: 340px;
+$z-tooltip: 1000;
+
+// ---- Prompt dialogs ----
+$overlay: rgb(8 9 12 / 72%);
+$prompt-bg: #1b1e24;
+$prompt-border: #3b414d;
+$prompt-code-bg: #13151a;
+$prompt-code-border: #2f343e;
+$z-prompt: 1100;
+
+$font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;

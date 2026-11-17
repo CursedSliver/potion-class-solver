@@ -1,0 +1,140 @@
+@use 'variables' as *;
+
+// "Configure reagent preference" subsection in the checking card. The boxed
+// field chrome comes from `.field--boxed` in `_base.scss`.
+.preferences__body {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.pref-hint {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 18px;
+  margin: 0;
+  color: $text-muted;
+  font-size: 12.5px;
+}
+
+.pref-hint__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pref-hint__slab {
+  width: 18px;
+  height: 10px;
+  border-radius: 3px;
+
+  &--preferred {
+    background: $preference-preferred;
+  }
+
+  &--neutral {
+    background: $preference-neutral;
+  }
+
+  &--avoid {
+    background: $preference-avoid;
+  }
+}
+
+.pref-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pref-reagent {
+  --pref-slab-width: 16px;
+  --pref-slab-height: 10px;
+  --pref-slab-gap: 2px;
+
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 8px;
+  background: $cell-bg;
+  border: 1px solid $cell-border;
+  border-radius: 10px;
+  transition: background-color 0.12s ease;
+
+  // The current classification tints the whole reagent button; neutral keeps
+  // the plain cell background.
+  &[data-preference='preferred'] {
+    background: $preference-preferred-bg;
+  }
+
+  &[data-preference='avoid'] {
+    background: $preference-avoid-bg;
+  }
+}
+
+// The three choice slabs at the top of each reagent button.
+.pref-reagent__choices {
+  display: flex;
+  gap: var(--pref-slab-gap);
+  width: calc(var(--pref-slab-width) * 3 + var(--pref-slab-gap) * 2);
+}
+
+.pref-slab {
+  // The button itself never moves, so its original hitbox stays usable while
+  // the painted slab lifts; only the pseudo-element below is transformed.
+  position: relative;
+  width: var(--pref-slab-width);
+  height: var(--pref-slab-height);
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    transition: transform 0.12s ease;
+  }
+
+  &--preferred::before {
+    background: $preference-preferred;
+  }
+
+  &--neutral::before {
+    background: $preference-neutral;
+  }
+
+  &--avoid::before {
+    background: $preference-avoid;
+  }
+
+  // The slab matching the current classification stays raised.
+  &[aria-pressed='true']::before {
+    transform: translateY(-2px);
+  }
+
+  // Hovering lifts the slab a little further, signalling that it is clickable.
+  &:hover::before {
+    transform: translateY(-3px);
+  }
+
+  &:active::before {
+    transform: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+.pref-reagent__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+}

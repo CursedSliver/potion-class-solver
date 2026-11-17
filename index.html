@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Potion Class Solver</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./dist/index.css" />
+    <!-- GitHub Pages cannot send COOP/COEP headers. This service worker adds
+         them so Z3's SharedArrayBuffer-based WASM build works there. It reloads
+         the page once; on hosts that already set the headers it does nothing. -->
+    <script src="./coi-serviceworker.js"></script>
+    <!-- z3-solver's Emscripten build must be a classic page script; it exposes
+         the initZ3 global that the bundled z3-solver/browser module consumes. -->
+    <script src="./dist/z3-built.js"></script>
+    <script type="module" src="./dist/app.js"></script>
+  </head>
+  <body>
+    <main id="app"></main>
+  </body>
+</html>

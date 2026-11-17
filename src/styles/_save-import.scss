@@ -1,0 +1,78 @@
+@use 'variables' as *;
+
+// "Import save" card — paste a Cookie Clicker save at the top of the page.
+
+.save-import__caption {
+  max-width: 720px;
+}
+
+.save-import__input {
+  width: 100%;
+  min-height: 156px;
+  resize: vertical;
+  padding: 12px 14px;
+  background: $prompt-code-bg;
+  border: 1px solid $prompt-code-border;
+  border-radius: 10px;
+  color: $text;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+
+  &::placeholder {
+    color: $text-faint;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-strong;
+    outline-offset: 1px;
+  }
+}
+
+.save-import__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.save-import__option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: $text-muted;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: $accent;
+    cursor: pointer;
+  }
+}
+
+.save-import__status {
+  flex-basis: 100%;
+  margin: 0;
+  max-width: 640px;
+  color: $text-muted;
+  font-size: 13px;
+  line-height: 1.45;
+
+  &:empty {
+    display: none;
+  }
+
+  &[data-state='error'] {
+    color: $red;
+  }
+
+  &[data-state='success'] {
+    color: $green;
+  }
+}

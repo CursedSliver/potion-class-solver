@@ -1,0 +1,138 @@
+@use 'variables' as *;
+
+// Truth-table coverage shown below the reagent preferences once a solve has
+// succeeded. All colors come from `_variables.scss`.
+.progress {
+  display: grid;
+  gap: 8px;
+}
+
+.progress__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+
+  .field__title {
+    margin: 0;
+  }
+}
+
+.progress__value {
+  margin: 0;
+  color: $text-muted;
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.progress__track {
+  height: 10px;
+  border: 1px solid $panel-border;
+  border-radius: 999px;
+  background: $progress-track;
+  overflow: hidden;
+}
+
+.progress__fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, $progress-fill, $progress-fill-strong);
+  box-shadow: 0 0 12px $progress-glow;
+  transition: width 0.55s cubic-bezier(0.22, 0.8, 0.28, 1);
+}
+
+.progress--flooding .progress__fill {
+  transition-duration: 0.65s;
+}
+
+.progress--increment .progress__fill {
+  transition-duration: 0.35s;
+  animation: progress-pulse 0.6s ease-out;
+}
+
+@keyframes progress-pulse {
+  0% {
+    box-shadow: 0 0 0 $progress-glow;
+  }
+
+  35% {
+    box-shadow: 0 0 18px $progress-glow;
+    filter: brightness(1.2);
+  }
+
+  100% {
+    box-shadow: 0 0 12px $progress-glow;
+    filter: none;
+  }
+}
+
+// A resolved result row keeps its old box size while showing the number of
+// truth-table cells the brew added. It then fades and the list reorders.
+.result-row--resolved {
+  justify-content: center;
+  gap: 8px;
+  background: $resolution-bg;
+  border-color: $resolution-border;
+  transition: opacity 0.17s ease, transform 0.17s ease;
+}
+
+.result-row--leaving {
+  opacity: 0;
+  transform: translateY(-2px);
+}
+
+.result-row__resolution-count {
+  color: $green;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.result-row__resolution-icon {
+  color: $green;
+  font-weight: 700;
+}
+
+.result-row__resolution-label {
+  color: $text-muted;
+  font-size: 13px;
+}
+
+.result-row__resolution-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid $panel-border;
+  border-top-color: $accent;
+  border-radius: 50%;
+  animation: resolution-spin 0.7s linear infinite;
+}
+
+@keyframes resolution-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress__fill {
+    transition: none;
+  }
+
+  .progress--increment .progress__fill {
+    animation: none;
+  }
+
+  .result-row--resolved {
+    transition: none;
+  }
+
+  .result-row--leaving {
+    transform: none;
+  }
+
+  .result-row__resolution-spinner {
+    animation: none;
+  }
+}

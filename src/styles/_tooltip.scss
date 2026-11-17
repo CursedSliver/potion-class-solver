@@ -1,0 +1,97 @@
+@use 'variables' as *;
+
+// Game-style element-anchored tooltip (see reference screenshots):
+// dark panel, bronze border, bold white name, stat line, divider-separated
+// rows, italic centered flavor quote.
+.tooltip {
+  position: fixed;
+  z-index: $z-tooltip;
+  width: $tip-width;
+  max-width: calc(100vw - 16px);
+  background: $tip-bg;
+  border: 2px solid $tip-border;
+  border-radius: $tip-radius;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 55%);
+  padding: 12px 14px;
+  color: $tip-text;
+  text-align: left;
+  pointer-events: none;
+  display: none;
+}
+
+.tooltip__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tooltip__icon {
+  flex: none;
+}
+
+.tooltip__titles {
+  min-width: 0;
+}
+
+.tooltip__name {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.tooltip__stat {
+  margin-top: 2px;
+  font-size: 13px;
+}
+
+.tooltip__stat-label {
+  font-weight: 700;
+  margin-right: 4px;
+}
+
+.tooltip__hint {
+  margin-top: 2px;
+  font-size: 13px;
+  font-style: italic;
+  color: $tip-muted;
+}
+
+.tooltip__divider {
+  height: 1px;
+  background: rgb(255 255 255 / 9%);
+  margin: 9px 0;
+}
+
+.tooltip__row {
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.tooltip__row-label {
+  font-weight: 700;
+  margin-right: 5px;
+}
+
+.tooltip__body {
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.tooltip__quote {
+  margin-top: 9px;
+  font-style: italic;
+  color: $tip-muted;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+// Value color utilities inside tooltips.
+.tooltip .text-green {
+  color: $green;
+}
+
+.tooltip .text-red {
+  color: $red;
+  font-weight: 600;
+}
